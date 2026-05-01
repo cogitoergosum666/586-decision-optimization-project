@@ -1,0 +1,4 @@
+strategy,max_purpose_share_pct,largest_purpose
+Approve All,60.593494747512075,debt_consolidation
+BIP Optimal,29.999997059118165,debt_consolidation
+PD Threshold (<0.30),57.67803595023886,debt_consolidation

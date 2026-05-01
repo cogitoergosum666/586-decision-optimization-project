@@ -1,0 +1,12 @@
+BACKTESTING SUMMARY
+-------------------
+In the 2017 held-out vintage, BIP approved 65,019 loans (38.4% of the pool), generated $62.4M in realized profit, and achieved 6.68% realized ROI.
+Approve All generated $64.4M but required $2.42B of capital, producing only 2.66% ROI.
+The PD-threshold rule had the lowest realized default rate (16.93%) but also the weakest realized profit ($31.3M), showing that risk minimization alone does not maximize economic value.
+Across monthly 2017 issue cohorts, BIP had positive realized profit in 12/12 months, with mean monthly ROI 6.66%.
+
+ECONOMIC SENSITIVITY SUMMARY
+----------------------------
+When LGD is stressed from 0.65 to 0.9013 to 1.00, BIP realized ROI moves from 9.53% to 6.68% to 5.56%.
+The BIP portfolio's break-even LGD is approximately 1.489; each 1 percentage point increase in LGD changes BIP realized profit by about $-1.1M.
+The BIP portfolio's largest purpose exposure is debt_consolidation at 30.00% of approved volume, confirming that the 30% purpose concentration cap is effectively binding.

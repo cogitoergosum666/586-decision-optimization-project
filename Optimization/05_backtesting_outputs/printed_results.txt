@@ -1,0 +1,127 @@
+Loaded files:
+  loans_with_decisions.csv: (169321, 34)
+  sensitivity_results.csv: (35, 14)
+  strategy_comparison.csv: (3, 10)
+
+Loan columns:
+['id', 'issue_year', 'loan_status', 'target_default', 'pred_default_prob', 'loan_amnt', 'term', 'purpose', 'addr_state', 'annual_inc', 'dti', 'fico_range_low', 'fico_range_high', 'application_type', 'int_rate', 'installment', 'grade', 'sub_grade', 'issue_d', 'term_months', 'pd_calibrated', 'monthly_payment', 'total_interest', 'avg_balance', 'term_years', 'funding_cost', 'servicing_cost', 'net_income_good', 'ead', 'expected_loss', 'pi', 'approve_bip', 'approve_all', 'approve_threshold']
+
+Issue-month coverage:
+issue_month
+2017-01    16395
+2017-02    13468
+2017-03    17011
+2017-04    13104
+2017-05    16153
+2017-06    15235
+2017-07    14959
+2017-08    15489
+2017-09    13406
+2017-10    11926
+2017-11    12112
+2017-12    10063
+
+Recomputed strategy comparison under base economic assumptions:
+            strategy  n_approved  approval_rate  total_volume  weighted_pd  actual_default_rate  realized_profit  roi_realized_pct
+         Approve All      169321       100.0000  2421502475.0       0.2536              23.1330     6.440534e+07            2.6597
+PD Threshold (<0.30)      121036        71.4832  1535167825.0       0.1721              16.9305     3.131344e+07            2.0397
+         BIP Optimal       65019        38.3998   935093675.0       0.2000              20.2510     6.243966e+07            6.6774
+
+Original strategy_comparison.csv:
+               strategy  n_approved  approval_rate  total_volume  avg_pd  actual_default_rate  expected_profit  realized_profit  roi_expected_pct  roi_realized_pct
+         A. Approve All      169321       100.0000  2421502475.0  0.2536              23.1330     7.296138e+07     6.440534e+07            3.0131            2.6597
+B. PD Threshold (<0.30)      121036        71.4832  1535167825.0  0.1721              16.9305     4.000348e+07     3.131344e+07            2.6058            2.0397
+         C. BIP Optimal       65019        38.3998   935093675.0  0.2000              20.2510     8.211689e+07     6.243966e+07            8.7817            6.6774
+
+Monthly backtest preview:
+issue_month    strategy  n_approved  approval_rate  actual_default_rate  realized_profit  roi_realized_pct
+ 2017-01-01 Approve All       16395        100.000               22.690      7850286.963             3.302
+ 2017-02-01 Approve All       13468        100.000               23.218      5555053.613             2.815
+ 2017-03-01 Approve All       17011        100.000               22.950      5487663.827             2.234
+ 2017-04-01 Approve All       13104        100.000               23.802      3965015.762             2.106
+ 2017-05-01 Approve All       16153        100.000               23.946      4472053.047             1.967
+ 2017-06-01 Approve All       15235        100.000               23.656      5725929.489             2.677
+ 2017-07-01 Approve All       14959        100.000               24.072      5310989.821             2.565
+ 2017-08-01 Approve All       15489        100.000               22.900      6071198.769             2.862
+ 2017-09-01 Approve All       13406        100.000               24.989      5644384.227             2.879
+ 2017-10-01 Approve All       11926        100.000               22.212      4904845.454             2.866
+ 2017-11-01 Approve All       12112        100.000               20.905      5275571.578             3.017
+ 2017-12-01 Approve All       10063        100.000               21.346      4142342.615             2.760
+ 2017-01-01 BIP Optimal        6222         37.951               19.656      7272250.043             7.830
+ 2017-02-01 BIP Optimal        5086         37.764               20.527      5268872.924             6.879
+ 2017-03-01 BIP Optimal        6520         38.328               19.923      5578861.328             5.781
+
+Backtest stability summary:
+            strategy  mean_monthly_roi_pct  std_monthly_roi_pct  min_monthly_roi_pct  max_monthly_roi_pct  positive_profit_months  total_months  mean_monthly_default_rate_pct  std_monthly_default_rate_pct
+         Approve All                 2.671                0.391                1.967                3.302                      12            12                         23.057                         1.165
+PD Threshold (<0.30)                 2.032                0.218                1.695                2.386                      12            12                         16.830                         0.954
+         BIP Optimal                 6.658                0.673                5.781                7.830                      12            12                         20.202                         1.162
+
+Purpose concentration summary:
+            strategy  max_purpose_share_pct    largest_purpose
+         Approve All                 60.593 debt_consolidation
+         BIP Optimal                 30.000 debt_consolidation
+PD Threshold (<0.30)                 57.678 debt_consolidation
+
+Policy-grid sweet spots:
+                                sweet_spot       budget  pd_cap  n_approved  approval_rate  realized_default_rate  realized_profit  roi_realized
+                      Highest realized ROI  500000000.0    0.28       29273         17.288                 28.326     57806648.479        11.562
+             Highest total realized profit 1000000000.0    0.25       64368         38.015                 24.518     70288842.728         7.029
+Best profit subject to default rate <= 18% 1000000000.0    0.15       49476         29.220                 15.747     44196442.157         6.520
+
+Economic sensitivity table saved.
+scenario_type  scenario_value             strategy  realized_profit  roi_realized_pct
+          LGD          0.6500          Approve All     1.421974e+08            5.8723
+          LGD          0.6500 PD Threshold (<0.30)     6.561467e+07            4.2741
+          LGD          0.6500          BIP Optimal     8.911747e+07            9.5303
+          LGD          0.7500          Approve All     1.112416e+08            4.5939
+          LGD          0.7500 PD Threshold (<0.30)     5.196516e+07            3.3850
+          LGD          0.7500          BIP Optimal     7.850155e+07            8.3950
+          LGD          0.8000          Approve All     9.576362e+07            3.9547
+          LGD          0.8000 PD Threshold (<0.30)     4.514040e+07            2.9404
+          LGD          0.8000          BIP Optimal     7.319359e+07            7.8274
+          LGD          0.8500          Approve All     8.028569e+07            3.3155
+          LGD          0.8500 PD Threshold (<0.30)     3.831564e+07            2.4959
+          LGD          0.8500          BIP Optimal     6.788563e+07            7.2598
+          LGD          0.9000          Approve All     6.480776e+07            2.6763
+          LGD          0.9000 PD Threshold (<0.30)     3.149088e+07            2.0513
+          LGD          0.9000          BIP Optimal     6.257767e+07            6.6921
+          LGD          0.9013          Approve All     6.440534e+07            2.6597
+          LGD          0.9013 PD Threshold (<0.30)     3.131344e+07            2.0397
+          LGD          0.9013          BIP Optimal     6.243966e+07            6.6774
+          LGD          0.9500          Approve All     4.932983e+07            2.0372
+          LGD          0.9500 PD Threshold (<0.30)     2.466613e+07            1.6067
+
+BIP LGD x funding-cost stress test, values are realized ROI (%):
+funding_cost  0.020  0.035  0.050  0.070
+lgd                                     
+0.6500        11.61   9.53   7.45   4.67
+0.7500        10.48   8.40   6.31   3.54
+0.8000         9.91   7.83   5.75   2.97
+0.8500         9.34   7.26   5.18   2.40
+0.9000         8.77   6.69   4.61   1.84
+0.9013         8.76   6.68   4.60   1.82
+0.9500         8.21   6.12   4.04   1.27
+1.0000         7.64   5.56   3.48   0.70
+
+Break-even LGD by strategy:
+            strategy  n_approved  default_ead_sum  breakeven_lgd  profit_impact_per_1pct_lgd
+         Approve All      169321      309558625.0         1.1094                -3095586.250
+PD Threshold (<0.30)      121036      136495150.0         1.1307                -1364951.500
+         BIP Optimal       65019      106159212.5         1.4895                -1061592.125
+
+BACKTESTING SUMMARY
+-------------------
+In the 2017 held-out vintage, BIP approved 65,019 loans (38.4% of the pool), generated $62.4M in realized profit, and achieved 6.68% realized ROI.
+Approve All generated $64.4M but required $2.42B of capital, producing only 2.66% ROI.
+The PD-threshold rule had the lowest realized default rate (16.93%) but also the weakest realized profit ($31.3M), showing that risk minimization alone does not maximize economic value.
+Across monthly 2017 issue cohorts, BIP had positive realized profit in 12/12 months, with mean monthly ROI 6.66%.
+
+ECONOMIC SENSITIVITY SUMMARY
+----------------------------
+When LGD is stressed from 0.65 to 0.9013 to 1.00, BIP realized ROI moves from 9.53% to 6.68% to 5.56%.
+The BIP portfolio's break-even LGD is approximately 1.489; each 1 percentage point increase in LGD changes BIP realized profit by about $-1.1M.
+The BIP portfolio's largest purpose exposure is debt_consolidation at 30.00% of approved volume, confirming that the 30% purpose concentration cap is effectively binding.
+
+All tables saved to:  C:\GitHub\586-decision-optimization-project\Optimization\05_backtesting_outputs\tables
+All figures saved to: C:\GitHub\586-decision-optimization-project\Optimization\05_backtesting_outputs\figures
